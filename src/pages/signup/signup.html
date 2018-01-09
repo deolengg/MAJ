@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+    Register
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="signup-content" padding>
+  <ion-row class="logo-row">
+
+  </ion-row>
+  <div class="signup-box">
+    <form [formGroup] = "signUpForm">
+      <ion-row>
+        <ion-col text-center>
+          <ion-img  width="150" height="80" src="../assets/images/icon.jpg"></ion-img>
+          <ion-list inset>
+            <ion-item>
+              <ion-label floating>First & Last Name</ion-label>
+              <ion-input type="text" placeholder="First & Last Name"  formControlName="name" requried></ion-input>
+            </ion-item>
+               <ion-item *ngIf="name.hasError('required') && name.touched">
+              <p>* Full Name is Required</p>
+              </ion-item>
+              <ion-item *ngIf="name.hasError('maxlength') && name.touched">
+              <p>* Maximum Lenght is 25</p>
+              </ion-item>
+              <ion-item *ngIf="name.hasError('minlength') && name.touched">
+              <p>* Minimum Lenght is 6</p>
+              </ion-item>
+
+            <ion-item>
+              <ion-label floating>Email ID</ion-label>
+              <ion-input type="email" placeholder="Email" formControlName="emailID"></ion-input>
+            </ion-item>
+              <ion-item *ngIf="emailID.hasError('required') && emailID.touched">
+              <p>* Email ID is Required</p>
+              </ion-item>
+              <ion-item *ngIf="emailID.hasError('maxlength') && emailID.touched">
+              <p>* Maximum Lenght is 25</p>
+              </ion-item>
+              <ion-item *ngIf="emailID.hasError('minlength') && emailID.touched">
+              <p>* Minimum Lenght is 6</p>
+              </ion-item>
+
+            <ion-item>
+              <ion-label floating>Password</ion-label>
+              <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+            </ion-item>
+              <ion-item *ngIf="password.hasError('required') && password.touched">
+              <p>* Password is Required</p>
+              </ion-item>
+              <ion-item *ngIf="password.hasError('minlength') && password.touched">
+              <p>* Minimum Lenght is 6</p>
+              </ion-item>
+              <ion-item *ngIf="password.hasError('maxlength') && password.touched">
+              <p>* Maximum Lenght is 25</p>
+              </ion-item>
+              
+            <ion-item>
+              <ion-label floating>Confirm Password</ion-label>
+              <ion-input type="password" placeholder="Confirm Password" formControlName="confirmPassword"></ion-input>
+                <ion-item *ngIf="confirmPassword.hasError('required') && confirmPassword.touched">
+              <p>* Confirm Password is Required</p>
+              </ion-item>
+            </ion-item>
+              
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-item>
+        <ion-label>I agree with all Terms and Conditions</ion-label>
+        <ion-checkbox color="Blue" checked="false" required></ion-checkbox>
+      </ion-item>
+      <ion-row>
+        <ion-col class="signup-col">
+          <button ion-button class="submit-btn" type="submit" full (click)="saveAndLogin()">Register</button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </div>
+</ion-content>

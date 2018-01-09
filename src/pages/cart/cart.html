@@ -1,0 +1,38 @@
+
+<ion-header>
+
+  <ion-navbar hideBackButton="false">
+
+    <button  ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title text-center>Cart</ion-title>
+
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <div class="row">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-label>1)</ion-label>
+          <img src="assets/images/dslr.png"/>
+        </ion-col>
+        <ion-col>
+          <br>
+          <ion-label>NIKON D3400</ion-label>
+          <ion-label>Price : $500</ion-label>
+          <ion-label>Quanitity : 2</ion-label>
+          <br>
+          <br>
+          
+          <button ion-button color="danger" round>Delete</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <button ion-button class="submit-btn" full type="submit" (click)="goToCheckout()">Proceed to Checkout</button>
+</ion-content>
+

@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-navbar hideBackButton>
+    <ion-title text-center>
+      Login
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content class="login-content" padding>
+  <div class="login-box">
+    <form [formGroup] = "loginForm">
+      <ion-row>
+        <ion-col text-center>
+          <ion-img  width="160" height="85" src="../assets/images/icon.jpg"></ion-img>
+          <ion-list inset>
+
+            <ion-item>
+              <ion-label floating>Email ID</ion-label>
+              <ion-input type="email" placeholder="Email" formControlName="emailID" requried></ion-input>
+            </ion-item>
+              <ion-item *ngIf="emailID.hasError('required') && emailID.touched">
+              <p>* Email ID is Required</p>
+              </ion-item>
+              <ion-item *ngIf="emailID.hasError('maxlength') && emailID.touched">
+              <p>* Maximum Lenght is 25</p>
+              </ion-item>
+              <ion-item *ngIf="emailID.hasError('minlength') && emailID.touched">
+              <p>* Minimum Lenght is 5</p>
+              </ion-item>
+            <ion-item>
+              <ion-label floating>Password</ion-label>
+              <ion-input type="password" placeholder="Password" formControlName="password" requried></ion-input>
+            </ion-item>
+             <ion-item *ngIf="password.hasError('required') && password.touched">
+              <p>* Password is Required</p>
+              </ion-item>
+              <ion-item *ngIf="password.hasError('minlength') && password.touched">
+              <p>* Minimum Lenght is 5</p>
+              </ion-item>
+              <ion-item *ngIf="password.hasError('maxlength') && password.touched">
+              <p>* Maximum Lenght is 25</p>
+              </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col class="signup-col">
+          <button ion-button class="submit-btn" full type="submit" (click)="goToMainPage()">Login</button>
+            <br>
+            <br>
+          <button ion-button class="register-btn" block clear (click)="goToSingUp()">Create New Account</button>
+        </ion-col>
+            </ion-row>
+        <!--
+          <ion-col>
+            <ion-label text-center>Sign in with</ion-label>
+          <ion-row>
+          <button ion-button round  block>Facebook</button>
+      </ion-row>
+      <ion-label text-center>OR</ion-label>
+      <ion-row>
+        <button ion-button color="danger" round block>Google</button>
+      </ion-row>
+    </ion-col>
+    -->
+    </form>
+  </div>
+</ion-content>
