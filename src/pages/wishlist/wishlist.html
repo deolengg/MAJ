@@ -1,6 +1,6 @@
 <ion-header>
 
-  <ion-navbar hideBackButton="true">
+  <ion-navbar hideBackButton="false">
 
     <button  ion-button icon-only menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -11,6 +11,36 @@
 
 </ion-header>
 <ion-content padding>
-
+  <div class="row">
+    <ion-grid>
+      <ion-card *ngFor="let wish of wishlist;">
+          <img [src]="'http://localhost:8000/' + wish.product.pImage"/>
+        <ion-card-header>
+            {{ wish.product.pName }}
+        </ion-card-header>
+        <ion-list inset>
+          <ion-card-content>
+          <p>Price : $ {{wish.product.pPrice}}</p>
+          <p>Description : {{wish.product.pDesc}}</p>
+          <p>Rating : {{wish.product.pRating}}/5 Stars</p>
+            <ion-item>
+              <ion-label>Quantity :</ion-label>
+              <ion-select [(ngModel)]="qty">
+                <ion-option value="1">1</ion-option>
+                <ion-option value="2">2</ion-option>
+                <ion-option value="3">3</ion-option>
+                <ion-option value="4">4</ion-option>
+                <ion-option value="5">5</ion-option>
+              </ion-select>
+            </ion-item>
+              <button ion-button class="submit-btn"  color="light" (click)="removeFromWishList(wish.id)">Remove From Wish List</button>
+          </ion-card-content>
+        </ion-list>
+      </ion-card>
+      <ion-row>
+        <button ion-button class="submit-btn" full (click)="goToCart()">Add To Cart</button>
+        
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>
-

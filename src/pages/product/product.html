@@ -11,15 +11,15 @@
   <div class="row">
     <ion-grid>
       <ion-card>
-          <img src="assets/images/dslr.png"/>
+          <img [src]="'http://localhost:8000/' + product.pImage"/>
         <ion-card-header>
-          NIKON D3400
+            {{ product.pName }}
         </ion-card-header>
         <ion-list inset>
           <ion-card-content>
-          <p>Price : $500</p>
-          <p>Description : 24.2-Megapixel Dx-Format CMOS image sensor with no optical low-pass filter for breathtaking image quality</p>
-          <p>Rating : 4/5 Stars</p>
+          <p>Price : $ {{product.pPrice}}</p>
+          <p>Description : {{product.pDesc}}</p>
+          <p>Rating : {{product.pRating}}/5 Stars</p>
             <ion-item>
               <ion-label>Quantity :</ion-label>
               <ion-select [(ngModel)]="qty">
@@ -35,7 +35,7 @@
       </ion-card>
       <ion-row>
         <button ion-button class="submit-btn" full (click)="goToCart()">Add To Cart</button>
-        <button ion-button class="submit-btn" full color="light">Add To Wish List</button>
+        <button ion-button class="submit-btn" full color="light" (click)="addToWishList(product.id)">Add To Wish List</button>
       </ion-row>
     </ion-grid>
   </div>

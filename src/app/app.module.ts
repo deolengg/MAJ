@@ -19,6 +19,7 @@ import { Checkout } from '../pages/checkout/checkout';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { RestProvider } from '../providers/rest/rest';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { RestProvider } from '../providers/rest/rest';
     BrowserModule,
     HttpClientModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+      IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

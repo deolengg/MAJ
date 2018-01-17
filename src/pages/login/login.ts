@@ -5,6 +5,7 @@ import { Main } from '../main/main';
 import { RestProvider } from '../../providers/rest/rest';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { AlertController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'login',
@@ -20,8 +21,9 @@ export class Login {
     public navCtrl: NavController,
     public restProvider: RestProvider,
     public formBuilder : FormBuilder,
-    public alertCtrl : AlertController 
-    
+    public alertCtrl : AlertController ,
+     public storage : Storage ,  
+
     ) {
       console.log(restProvider.getUsers());
         
@@ -31,6 +33,7 @@ export class Login {
         });
         
         this.emailID = this.loginForm.controls['emailID'];
+        
         this.password = this.loginForm.controls['password'];
   }
   goToSingUp(){
@@ -38,21 +41,38 @@ export class Login {
     this.navCtrl.push(SignUp);
   }
   goToMainPage(){
-      if (this.emailID.value=="admin" && this.password.value=="admin"){
-      console.log(this.emailID.value);
-      console.log(this.password.value);
+      
+      this.restProvider.login(this.emailID.value, this.password.value).
+      subscribe(data => {
+        this.storage.set('email', this.emailID.value);
         this.navCtrl.push(Main);
         this.navCtrl.setRoot(Main);
-      }
-      else {
-          let alert = this.alertCtrl.create({
-    title: 'Authentication Failed',
-    subTitle: 'Try Again with Email and Password',
-    buttons: ['Okay']
-    });
-  alert.present();
-            this.emailID.reset();
-            this.password.reset();
-      }
+      }, err => {
+        let alert = this.alertCtrl.create({
+            title: 'Authentication Failed',
+            subTitle: 'Try Again with Email and Password',
+            buttons: ['Okay']
+        });
+        alert.present();
+        this.emailID.reset();
+        this.password.reset();
+      });
+      
+//      if (this.emailID.value=="admin" && this.password.value=="admin"){
+//      console.log(this.emailID.value);
+//      console.log(this.password.value);
+//        this.navCtrl.push(Main);
+//        this.navCtrl.setRoot(Main);
+//      }
+//      else {
+//          let alert = this.alertCtrl.create({
+//    title: 'Authentication Failed',
+//    subTitle: 'Try Again with Email and Password',
+//    buttons: ['Okay']
+//    });
+//  alert.present();
+//            this.emailID.reset();
+//            this.password.reset();
+//      }
   }
 }

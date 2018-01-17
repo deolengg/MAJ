@@ -19,16 +19,23 @@ export class RestProvider {
     }
     addUser(data) // user registration 
     {
-        return new Promise((resolve, reject) => {
-        this.http.post(this.apiUrl+'/login', JSON.stringify(data))
-        .subscribe(res => {
-            resolve(res);
-            }, (err) => {
-            reject(err);
-            });
-        });
+        return this.http.post(`${this.apiUrl}/rest-auth/registration/`, data);
+//        return new Promise((resolve, reject) => {
+//        this.http.post(this.apiUrl+'/login', JSON.stringify(data))
+//        .subscribe(res => {
+//            resolve(res);
+//            }, (err) => {
+//            reject(err);
+//            });
+//        });
         }
-        getUsers() { // fetch all users at once and validate later
+    
+    login(username, password) {
+        return this.http.post(`${this.apiUrl}/rest-auth/login/`, {'username': username, 'password': password});
+        
+    }
+    
+    getUsers() { // fetch all users at once and validate later
             return new Promise(resolve => {
             this.http.get(this.apiUrl+'/login').subscribe(data => {
             resolve(data);
@@ -38,12 +45,19 @@ export class RestProvider {
     });
     }
     getProducts() { // fetch all products and add to main shopping page
-        return new Promise(resolve => {
-        this.http.get(this.apiUrl+'/products').subscribe(data => {
-        resolve(data);
-        }, err => {
-      console.log(err);
-        });
-    });
+        return this.http.get(this.apiUrl+'/products');
+    }
+    getProduct(id) { // fetch all products and add to main shopping page
+        return this.http.get(this.apiUrl+'/products/' + id + '/');
+    }
+    
+    addToWisList(productId, userId) {
+        return this.http.post(this.apiUrl+'/wishlist/', {user: userId, product: productId});   
+    }
+    getWishList(userId) {
+        return this.http.get(this.apiUrl+'/wishlist/?user='+userId);
+    }
+    removeFromWishList(wishlistId) {
+        return this.http.delete(this.apiUrl+'/wishlist/' + wishlistId + '/');
     }
 }

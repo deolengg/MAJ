@@ -41,22 +41,36 @@ export class SignUp {
       
   }
     saveAndLogin(){
-        if (this.password.value==this.confirmPassword.value){
-        console.log(this.name.value);
-        console.log(this.emailID.value);
-        console.log(this.password.value);
-        console.log(this.confirmPassword.value);
-        this.navCtrl.push(Login);
-        }
-        else {
+        if (this.password.value!=this.confirmPassword.value) {
             let alert = this.alertCtrl.create({
-    title: 'Mis-Match',
-    subTitle: 'Re-enter Password and Confirm Password',
-    buttons: ['Dismiss']
-    });
-  alert.present();
+                title: 'Mis-Match',
+                subTitle: 'Re-enter Password and Confirm Password',
+                buttons: ['Dismiss']
+            });
+            alert.present();
             this.password.reset();
             this.confirmPassword.reset();
+            return;
         }
+        
+        this.restProvider.addUser({
+            username: this.emailID.value,
+            password1: this.password.value,
+            password2: this.confirmPassword.value
+        }).subscribe(data => {
+            this.navCtrl.push(Login);
+        }, err => {
+            let alert = this.alertCtrl.create({
+                title: 'User already exist',
+                subTitle: 'Please reset password if you forgot yours',
+                buttons: ['Dismiss']
+            });
+            alert.present();
+        });
+//        console.log(this.name.value);
+//        console.log(this.emailID.value);
+//        console.log(this.password.value);
+//        console.log(this.confirmPassword.value);
+        
   }
 }

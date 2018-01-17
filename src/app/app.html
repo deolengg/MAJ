@@ -1,7 +1,7 @@
 <ion-menu [content]="content" type="overlay"  persistent=“true”>
   <ion-header>
     <ion-toolbar>
-      <ion-title>Hello, admin</ion-title>
+      <ion-title>Hello, {{user}}</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content>
@@ -15,7 +15,7 @@
       <ion-item>
         Your Orders
       </ion-item>
-      <ion-item>
+      <ion-item menuClose (click)="goToWishList()">
         Your Wish List
       </ion-item>
       <ion-item>

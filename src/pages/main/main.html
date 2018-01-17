@@ -11,22 +11,22 @@
 
 </ion-header>
 <ion-content padding>
-  <ion-searchbar>
+  <ion-searchbar (ionInput)="getItems($event)">
   </ion-searchbar>
   <div class="row">
     <ion-grid>
-      <ion-row>
+      <ion-row *ngFor="let product of filteredProducts;">
         <ion-col>
-          <img src="assets/images/dslr.png"/>
+          <img [src]="'http://localhost:8000/' + product.pImage"/>
           <ion-card-content>
             <ion-card-title>
-              NIKON D3400
+              {{product.pName}}
             </ion-card-title>
             <p>
-              24.2-Megapixel Dx-Format CMOS image sensor with no optical low-pass filter for breathtaking image quality
+              {{product.pDesc}}
             </p>
           </ion-card-content>
-          <button icon-only text-right (click)="goToProductPage()">
+          <button icon-only text-right (click)="goToProductPage(product.id)">
             Visit Product
             <ion-icon name="md-link"></ion-icon>
           </button>
