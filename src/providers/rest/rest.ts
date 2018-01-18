@@ -47,17 +47,17 @@ export class RestProvider {
     getProducts() { // fetch all products and add to main shopping page
         return this.http.get(this.apiUrl+'/products');
     }
-    getProduct(id) { // fetch all products and add to main shopping page
+    getProduct(id) { // fetch product for product page
         return this.http.get(this.apiUrl+'/products/' + id + '/');
     }
     
-    addToWisList(productId, userId) {
+    addToWisList(productId, userId) { // fetch userid and productid for wishlist 
         return this.http.post(this.apiUrl+'/wishlist/', {user: userId, product: productId});   
     }
-    getWishList(userId) {
+    getWishList(userId) { // fetch wishlistid for given user id
         return this.http.get(this.apiUrl+'/wishlist/?user='+userId);
     }
-    removeFromWishList(wishlistId) {
+    removeFromWishList(wishlistId) { //remove product from whistlist
         return this.http.delete(this.apiUrl+'/wishlist/' + wishlistId + '/');
     }
 }

@@ -33,14 +33,17 @@
                 <ion-option value="5">5</ion-option>
               </ion-select>
             </ion-item>
-              <button ion-button class="submit-btn"  color="light" (click)="removeFromWishList(wish.id)">Remove From Wish List</button>
+              <ion-row>
+                  <ion-col>
+              <button ion-button class="submit-btn"  color="light" (click)="removeFromWishList(wish.id)">Remove</button>
+                  </ion-col>
+                  <ion-col>
+              <button ion-button class="submit-btn">Add To Cart</button>
+                  </ion-col>
+                  </ion-row>
           </ion-card-content>
         </ion-list>
-      </ion-card>
-      <ion-row>
-        <button ion-button class="submit-btn" full (click)="goToCart()">Add To Cart</button>
-        
-      </ion-row>
+      </ion-card>  
     </ion-grid>
   </div>
 </ion-content>

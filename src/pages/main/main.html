@@ -8,16 +8,17 @@
     <ion-title text-center>Shopping Main Page</ion-title>
 
   </ion-navbar>
-
+<ion-searchbar (ionInput)="getItems($event)">
+  </ion-searchbar>
 </ion-header>
 <ion-content padding>
-  <ion-searchbar (ionInput)="getItems($event)">
-  </ion-searchbar>
+    
+  
   <div class="row">
     <ion-grid>
       <ion-row *ngFor="let product of filteredProducts;">
         <ion-col>
-          <img [src]="'http://localhost:8000/' + product.pImage"/>
+          <img [src]="'http://localhost:8000/' + product.pImage" (click)="goToProductPage(product.id)"/>
           <ion-card-content>
             <ion-card-title>
               {{product.pName}}
@@ -26,13 +27,10 @@
               {{product.pDesc}}
             </p>
           </ion-card-content>
-          <button icon-only text-right (click)="goToProductPage(product.id)">
+          <!-- <button icon-only text-right (click)="goToProductPage(product.id)">
             Visit Product
             <ion-icon name="md-link"></ion-icon>
-          </button>
-        </ion-col>
-        <ion-col>
-
+          </button> -->
         </ion-col>
       </ion-row>
     </ion-grid>

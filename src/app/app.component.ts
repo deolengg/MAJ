@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { MenuController } from 'ionic-angular';
 import {App} from 'ionic-angular';
 
-//import { HomePage } from '../pages/home/home';
+import { HomePage } from '../pages/home/home';
 import { Main } from '../pages/main/main';
 import { Login } from '../pages/login/login';
 import { WishList } from '../pages/wishlist/wishlist';
@@ -18,7 +18,7 @@ import { Storage } from '@ionic/storage';
 })
 export class MyApp {
 
-  rootPage:any = Main;
+  rootPage:any = HomePage;
     user;
 
   constructor(platform: Platform,
@@ -46,6 +46,9 @@ export class MyApp {
     }
     updateUser(user) {
         this.user=user;
+    }
+    goToMain(){
+        this.app.getActiveNav().push(Main);
     }
 
 }
